@@ -1,0 +1,205 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+    <!-- JQuery UI CSS -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css">
+
+    <!-- Style Sheet -->
+    <link href="css/main.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fascinate+Inline|Pacifico" rel="stylesheet">
+
+    <!-- JQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+
+    <!-- Bootstrap toggle button -->
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+</head>
+<body>
+    
+
+    <div class="container-fluid" id="control-board"> <!--Control Board -->
+        <!-- The Brush, Line & Curve and Shape Button 
+        
+        <div class="col-lg-12 col-md-12 col-sm-12 btn-default" id="brush-button">Brush</div>
+        <div class="col-lg-12 col-md-12 col-sm-12 btn-default" id="line-button">Line &#38; Curve</div>
+        <div class="col-lg-12 col-md-12 col-sm-12 btn-default" id="shape-button">Shape</div>-->
+        
+        <div class="col-lg-12 col-md-12 col-sm-12 functions-holder" style="height: 270px;">
+            <div class="col-lg-12 col-md-12 col-sm-12 btn-default" style="border: none; font-size: 30px;">Functions</div>
+            <!-- The Brush Functions Button -->
+            <div class="col-lg-12 col-md-12 col-sm-12 " id="brush-icons" style="border: none;">
+                <div class="col-lg-4 col-md-4 col-sm-4 fa fa-paint-brush btn btn-default" id="drawing-line-smooth" aria-hidden="true"></div>
+                <img src="assets/img/comb.png" class="col-lg-4 col-md-4 col-sm-4 btn btn-default" id="e-edge"
+                     width="20", height="40" style="background: transparent; border:none;">
+                <img src="assets/img/thickbrush.png" class="col-lg-4 col-md-4 col-sm-4 btn btn-default" id="board-edge"
+                        width="20", height="40" style="background: transparent; border:none;">
+            </div><!-- End Brush Functions Button -->
+            <!-- The Line & Curve Functions Button -->
+            <div class="col-lg-12 col-md-12 col-sm-12 " id="line-icons" style="border: none;">
+                <i class="col-lg-4 col-md-4 col-sm-4 fa fa-minus btn btn-default" id="draw-s-line3" aria-hidden="true"></i>
+                <span class="col-lg-4 col-md-4 col-sm-4 btn btn-default" id="quad-curve" style="font-size: 23px; font-weight: 600; border: none; background: transparent;">ノ</span>
+                <img src="assets/img/bezier.png" class="col-lg-4 col-md-4 col-sm-4 btn btn-default" id="bezier-curve"
+                        width="20", height="35" style="background: transparent; border:none;">
+            </div><!-- End Line & Curve Functions Button -->
+            <!-- The Shape Functions Button -->
+            <div class="col-lg-12 col-md-12 col-sm-12" id="shape-icons"style="border: none;">
+                <i class="col-lg-4 col-md-4 col-sm-4 fa fa-square-o btn btn-default " id="drawing-rectangle2" aria-hidden="true"></i>
+                <i class="col-lg-4 col-md-4 col-sm-4 fa fa-circle-o btn btn-default" id="drawing-circle2" aria-hidden="true"></i>
+                <img src="assets/img/ellipse.png" class="col-lg-4 col-md-4 col-sm-4 btn btn-default" id="drawing-ellipse"
+                                                width="20", height="35" style="background: transparent; border:none;">
+            </div><!-- End Shape Functions Button -->
+        </div> <!-- End Function Holder -->
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 btn-default" id="selector"><i class="fa fa-mouse-pointer" aria-hidden="true"></i></div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 btn-default" id="insert-text"><i class="fa fa-header" aria-hidden="true"></i></div> <!--Text -->
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 btn-default" id="eraser"><i class="fa fa-eraser" aria-hidden="true"></i></div> <!--Eraser -->
+
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 btn-default" id="undo"><i class="fa fa-undo" aria-hidden="true"></i></div> <!--Undo -->
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 btn-default" id="redo"><i class="fa fa-repeat" aria-hidden="true"></i></div> <!--Redo -->
+    
+
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 btn-default" id="clear"><i class="fa fa-trash btn btn-default" aria-hidden="true"></i></div> <!--Trash -->
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 btn-default"><a href="#" id="download" download="image.jpg">
+            <i class="fa fa-download btn btn-default" aria-hidden="true"></i></a>
+        </div> <!--Download-->
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 btn-default" id="cancel"><i class="fa fa-times btn btn-default" aria-hidden="true"></i></div> <!--Cancel -->
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 btn-default" id="print"><i class="fa fa-files-o btn btn-default" aria-hidden="true"></i></div> <!--Print-->
+
+         <!-- options: PC -->
+        <div class="col-lg-12 col-md-12 col-sm-12" id="options">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="blank-box"></div>
+            <!-- Fill and Border Toggle -->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="fill-border-toggle-box">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="border:none; padding:0px;">Border</div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="border:none; padding:0px;">Fill</div>
+                <label class="col-lg-6 col-md-6 col-sm-6 col-xs-6 checkbox-inline" style="margin:0px; padding: 0px 0px 0px 10px; border:none;" id="border-options">
+                    <input type="checkbox" id="border-choice">
+                </label>
+                <label class="col-lg-6 col-md-6 col-sm-6 col-xs-6 checkbox-inline" style="margin:0px; padding: 0px 0px 0px 20px;  border:none;" id="fill-options" >
+                    <input type="checkbox" id="fill-choice">
+                </label>
+            </div>
+            <!--  End Fill and Border Toggle -->
+            <!-- Size and Rotate Slider -->
+            <div class="col-lg-12 col-md-12 col-sm-12" id="size-slider-bar" style="margin-top: 10px;">
+                <div id="size-slider"></div><span id="size_field" value="3">3</span><span style="margin-right: 30px">px</span>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12" id="rotate-slider-bar">
+                <div id="rotate-slider"></div><span id="rotate_field" value="0">0</span><span > degree</span>
+            </div>
+            <!-- End Size and Rotate Slider -->
+            <br>
+            <!-- Font Style Drop Menu -->
+            <div class="col-lg-12 col-md-12 col-sm-12" id="text-style-bar">
+                <span>Font Style</span>
+                <select id="text-style-choice">
+                    <option value="Arial">Arial</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                    <option value="Calibri">Calibri</option>
+                    <option value="Arial Black">Arial Black</option>
+                </select>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+                <!-- color picker -->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="color-choice1">
+                    <span>Stroke</span>
+                    <label for="color-input-stroke" id="color-label-stroke" style="background-color: black"></label>
+                    <input type="text" id="color-input-stroke" value=true></input>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="color-choice2">
+                    <span>Fill</span>
+                    <label for="color-input-fill" id="color-label-fill" style="background-color: black"></label>
+                    <input type="text" id="color-input-fill" value=false></input>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="color-choice3">
+                    <span>Text</span>
+                    <label for="color-input-stroke" id="color-label-text" style="background-color: black"></label>
+                    <input type="text" id="color-input-text" value=true></input>
+                </div>
+                <div id="color-picker" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <canvas id="color-block" height="80" width="80"></canvas>
+                    <canvas id="color-strip" height="80" width="30"></canvas>
+                </div>
+            <!-- End color picker -->
+            </div>
+            
+        </div> <!-- End of options -->
+    </div><!-- End of control board -->
+
+    <div class="container fluid" id="mobile-box"></div>
+
+    <div id="canvas-container">
+        <canvas id="canvas-real" class="canvas"></canvas>
+        <canvas id="canvas-draft" class="canvas"></canvas>
+    </div>
+
+    
+
+    <!-- input box for text-->
+    <input type="text" id="input-box" autofocus name="insert-text" value="" 
+        style="display: none; z-index: 1; border: 1px dashed grey; height: 5%; width:15%; position: absolute; font: 30px Arial" >
+
+    <!-- all JS function used in the canvas app -->
+    <script type='text/javascript' src="js/main.js"></script>
+    <script type='text/javascript' src="js/canvas-common.js"></script>
+    <script type='text/javascript' src="js/actionlog.js"></script>
+    <script type='text/javascript' src="js/drawing-line-smooth.js"></script>
+    <script type='text/javascript' src="js/draw-s-line3.js"></script>
+    <script type='text/javascript' src="js/quad-curve.js"></script>
+    <script type='text/javascript' src="js/bezier-curve.js"></script>
+    <script type='text/javascript' src="js/drawing-rectangle2.js"></script>
+    <script type='text/javascript' src="js/drawing-circle2.js"></script>
+    <script type='text/javascript' src="js/drawing-ellipse.js"></script>
+    <script type='text/javascript' src="js/eraser.js"></script>
+    <script type='text/javascript' src="js/selector2.js"></script>
+    <script type='text/javascript' src="js/insert-text.js"></script>
+    <script type='text/javascript' src="js/nib-boardEdge2.js"></script>
+    <script type='text/javascript' src="js/nib-eEdge2.js"></script>
+    <script type='text/javascript' src="js/color-picker.js"></script> 
+    <script type="text/javascript">
+    $( document ).ready(function() {
+        //Controller for button, line & Curve and Shape
+        /*$('#brush-button').click(function(){
+            $('#line-icons').hide();
+            $('#shape-icons').hide();
+            $('#brush-icons').show();
+            
+        });
+        $('#line-button').click(function(){
+            $('#brush-icons').hide();
+            $('#shape-icons').hide();
+            $('#line-icons').show();
+        });
+        $('#shape-button').click(function(){
+            $('#brush-icons').hide();
+            $('#line-icons').hide();
+            $('#shape-icons').show();
+        });*/
+        $('#color-label-stroke').click(function(){
+            $('#color-input-stroke').val(true);
+            $('#color-input-fill').val(false);
+        });
+        $('#color-label-fill').click(function(){
+            $('#color-input-stroke').val(false);
+            $('#color-input-fill').val(true);
+        });
+        $('#download').on('click', () =>{
+        document.getElementById("download").download = "image.jpg";
+        document.getElementById("download").href = document.getElementById("canvas-real").toDataURL("image/jpeg");
+        });
+    });
+    </script>
+    
+</body>
+</html>
+    
