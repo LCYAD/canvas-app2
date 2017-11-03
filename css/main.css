@@ -230,7 +230,21 @@ input{
         border: 1px solid black;
     }
 
-    
+    /*Stop the mobile from scrolling*/
+    #canvas-container {
+        min-height: 100%;
+        min-width: 100%;
+        overflow: hidden;
+        -webkit-touch-callout:none;
+        -webkit-user-select:none;
+        -khtml-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+        touch-action: none;
+        -ms-touch-action:none;
+        -webkit-touch-action:none;
+    }
 
 }
 

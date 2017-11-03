@@ -40,7 +40,11 @@ class DrawingEllipse extends PaintFunction{
         this.contextDraft.lineJoin = this.contextReal.lineJoin = "round";
         this.border = $('#border-choice')[0].checked;
         this.fill = $('#fill-choice')[0].checked;
-        this.rotation  = parseInt($("#rotate_field").val()) || 0;
+        if (!this.mobile){
+            this.rotation = parseInt($("#rotate_field").val()) || 0;
+        } else{
+            this.rotation = parseInt($("#rotate_field_mobile").val()) || 0;
+        }
         //check to see the phase adjust has started or not
         if (!this.phase_adjust){
             //to begin, set all points to be the same
@@ -204,7 +208,12 @@ class DrawingEllipse extends PaintFunction{
             4. generate the other 2 points
             5. rotate all the points
         */
-        this.rotation = parseInt($("#rotate_field").val()) || 0;
+        if (!this.mobile){
+            this.rotation = parseInt($("#rotate_field").val()) || 0;
+        } else{
+            this.rotation = parseInt($("#rotate_field_mobile").val()) || 0;
+        }
+        
 
         this.centre_pt = {x: this.startpt.x + (this.endpt.x-this.startpt.x)/2, y: this.startpt.y + (this.endpt.y-this.startpt.y)/2};
         let unrotated_start = this.rotateCoord({x: this.startpt.x - this.centre_pt.x, y: this.startpt.y - this.centre_pt.y}, this.rotation*-1);
