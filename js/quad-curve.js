@@ -1,5 +1,5 @@
 class Quad_Curve extends PaintFunction{  //using one canvas draft only
-    constructor(contextReal,contextDraft, canvas_log){
+    constructor(contextReal,contextDraft, canvas_log, mobile){
         super();
         this.contextReal = contextReal;
         this.contextDraft = contextDraft;
@@ -13,14 +13,20 @@ class Quad_Curve extends PaintFunction{  //using one canvas draft only
         this.phase_adjust = false;
         this.dragpt;
         this.finish = false;
+        this.mobile = mobile;
     }
     
     onMouseDown(coord,event){
         //setting style
-        this.contextDraft.strokeStyle = this.contextReal.strokeStyle = $('#color-label-stroke')[0].style.backgroundColor;
+        if (!this.mobile){
+            this.contextDraft.strokeStyle = this.contextReal.strokeStyle = $('#color-label-stroke')[0].style.backgroundColor;
+            this.contextDraft.lineWidth = this.contextReal.lineWidth = parseInt($("#size_field").val());
+        } else{
+            this.contextDraft.lineWidth = this.contextReal.lineWidth = parseInt($("#size_field_mobile").val()) || 1;
+            this.contextDraft.strokeStyle = this.contextReal.strokeStyle = "black";
+        }
         this.contextDraft.lineJoin = this.contextReal.lineJoin = "round";
         this.contextDraft.lineCap = this.contextReal.lineCap = "round";
-        this.contextDraft.lineWidth = this.contextReal.lineWidth = parseInt($("#size_field").val());
         //check to see the phase adjust has started or not
         if (!this.phase_adjust){
             //to begin, set all 3 points to be the same
@@ -154,8 +160,13 @@ class Quad_Curve extends PaintFunction{  //using one canvas draft only
         if (this.phase_adjust){
             this.contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
             //refresh setting
-            this.contextDraft.strokeStyle = this.contextReal.strokeStyle = $('#color-label-stroke')[0].style.backgroundColor;
-            this.contextDraft.lineWidth = this.contextReal.lineWidth = parseInt($("#size_field").val());
+            if (!this.mobile){
+                this.contextDraft.strokeStyle = this.contextReal.strokeStyle = $('#color-label-stroke')[0].style.backgroundColor;
+                this.contextDraft.lineWidth = this.contextReal.lineWidth = parseInt($("#size_field").val());
+            } else{
+                this.contextDraft.lineWidth = this.contextReal.lineWidth = parseInt($("#size_field_mobile").val()) || 1;
+                this.contextDraft.strokeStyle = this.contextReal.strokeStyle = "black";
+            }
             //redraw curve
             this.contextDraft.beginPath();
             this.contextDraft.moveTo(this.quadcoord.start.x,this.quadcoord.start.y);
@@ -171,8 +182,13 @@ class Quad_Curve extends PaintFunction{  //using one canvas draft only
     onPrint(){
         //print a copy onto the real canvas and move the curve and control points to the right and down 10px
         
-        this.contextDraft.lineWidth = this.contextReal.lineWidth = parseInt($("#size_field").val());
-        this.contextDraft.strokeStyle = this.contextReal.strokeStyle = $('#color-label-stroke')[0].style.backgroundColor;
+        if (!this.mobile){
+            this.contextDraft.strokeStyle = this.contextReal.strokeStyle = $('#color-label-stroke')[0].style.backgroundColor;
+            this.contextDraft.lineWidth = this.contextReal.lineWidth = parseInt($("#size_field").val());
+        } else{
+            this.contextDraft.lineWidth = this.contextReal.lineWidth = parseInt($("#size_field_mobile").val()) || 1;
+            this.contextDraft.strokeStyle = this.contextReal.strokeStyle = "black";
+        }
         
         this.contextReal.beginPath();
         this.contextReal.moveTo(this.quadcoord.start.x,this.quadcoord.start.y);

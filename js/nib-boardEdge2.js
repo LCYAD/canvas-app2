@@ -1,6 +1,6 @@
 class BoardEdge2 extends PaintFunction{
 
-    constructor(contextReal,contextDraft, canvas_log){
+    constructor(contextReal,contextDraft, canvas_log, mobile){
         super();
         this.context = contextReal; 
         this.canvas_log = canvas_log;
@@ -8,12 +8,20 @@ class BoardEdge2 extends PaintFunction{
         this.currentPoint = {};
         this.lineheight = 15;
         this.linewidth = 6;
+        this.mobile =mobile;
     }
     
     onMouseDown(coord,event){  
-        this.lineheight = 15 + parseInt($("#size_field").val());
-        this.linewidth = 6 + parseInt($("#size_field").val())/2.5;
-        this.context.fillStyle = $('#color-label-stroke')[0].style.backgroundColor; 
+        if (!this.mobile){
+            this.lineheight = 15 + parseInt($("#size_field").val());
+            this.linewidth = 6 + parseInt($("#size_field").val())/2.5;
+            this.context.fillStyle = $('#color-label-stroke')[0].style.backgroundColor; 
+        } else{
+            this.lineheight = 7.5 + parseInt($("#size_field_mobile").val()) || 7.5;
+            this.linewidth = 3 + parseInt($("#size_field_mobile").val())/2.5 || 3;
+            this.context.fillStyle = "black";
+        }
+        
         this.lastPoint = { x: coord[0], y: coord[1] };
         // this.context.drawImage(img,coord[0] ,coord[1], 20, 50)
     }

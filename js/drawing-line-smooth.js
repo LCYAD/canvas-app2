@@ -1,19 +1,24 @@
 class DrawingLineSmooth extends PaintFunction{
     
-    constructor(contextReal, contextDraft, canvas_log){
+    constructor(contextReal, contextDraft, canvas_log, mobile){
         super();
         this.contextReal = contextReal;
         this.contextDraft = contextDraft; 
         this.canvas_log = canvas_log;     
         this.prevCoord = []; 
         this.points = [];         
+        this.mobile = mobile;
     }
 
     onMouseDown(coord,event){
-        this.contextDraft.strokeStyle = this.contextReal.strokeStyle = $('#color-label-stroke')[0].style.backgroundColor;
+        if (!this.mobile){
+            this.contextDraft.strokeStyle = this.contextReal.strokeStyle = $('#color-label-stroke')[0].style.backgroundColor;
+            this.contextDraft.lineWidth = this.contextReal.lineWidth = parseInt($("#size_field").val());
+        } else{
+            this.contextDraft.lineWidth = this.contextReal.lineWidth = parseInt($("#size_field_mobile").val());
+        }
         this.contextDraft.lineJoin = this.contextDraft.lineCap = "round";
         this.contextReal.lineJoin = this.contextReal.lineCap = "round";
-        this.contextDraft.lineWidth = this.contextReal.lineWidth = parseInt($("#size_field").val());
         this.points.push(coord);
         this.prevCoord = coord;
     }

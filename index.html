@@ -23,6 +23,10 @@
     <!-- Bootstrap toggle button -->
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+    <!-- Hammer.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    
 </head>
 <body>
     
@@ -34,22 +38,22 @@
         <div class="col-lg-12 col-md-12 col-sm-12 btn-default" id="line-button">Line &#38; Curve</div>
         <div class="col-lg-12 col-md-12 col-sm-12 btn-default" id="shape-button">Shape</div>-->
         
-        <div class="col-lg-12 col-md-12 col-sm-12 functions-holder" style="height: 270px;">
-            <div class="col-lg-12 col-md-12 col-sm-12 btn-default" style="border: none; font-size: 30px;">Functions</div>
+        <div class="col-lg-12 col-md-12 col-sm-12 functions-holder" style="height: 180px;">
+            <!--<div class="col-lg-12 col-md-12 col-sm-12 btn-default" style="border: none; font-size: 25px;">Functions</div>  -->
             <!-- The Brush Functions Button -->
             <div class="col-lg-12 col-md-12 col-sm-12 " id="brush-icons" style="border: none;">
                 <div class="col-lg-4 col-md-4 col-sm-4 fa fa-paint-brush btn btn-default" id="drawing-line-smooth" aria-hidden="true"></div>
                 <img src="assets/img/comb.png" class="col-lg-4 col-md-4 col-sm-4 btn btn-default" id="e-edge"
-                     width="20", height="40" style="background: transparent; border:none;">
+                     width="15", height="30" style="background: transparent; border:none;">
                 <img src="assets/img/thickbrush.png" class="col-lg-4 col-md-4 col-sm-4 btn btn-default" id="board-edge"
-                        width="20", height="40" style="background: transparent; border:none;">
+                        width="15", height="30" style="background: transparent; border:none;">
             </div><!-- End Brush Functions Button -->
             <!-- The Line & Curve Functions Button -->
             <div class="col-lg-12 col-md-12 col-sm-12 " id="line-icons" style="border: none;">
                 <i class="col-lg-4 col-md-4 col-sm-4 fa fa-minus btn btn-default" id="draw-s-line3" aria-hidden="true"></i>
-                <span class="col-lg-4 col-md-4 col-sm-4 btn btn-default" id="quad-curve" style="font-size: 23px; font-weight: 600; border: none; background: transparent;">ノ</span>
+                <span class="col-lg-4 col-md-4 col-sm-4 btn btn-default" id="quad-curve" style="font-size: 22px; font-weight: 600; border: none; background: transparent;">ノ</span>
                 <img src="assets/img/bezier.png" class="col-lg-4 col-md-4 col-sm-4 btn btn-default" id="bezier-curve"
-                        width="20", height="35" style="background: transparent; border:none;">
+                        width="15", height="28" style="background: transparent; border:none;">
             </div><!-- End Line & Curve Functions Button -->
             <!-- The Shape Functions Button -->
             <div class="col-lg-12 col-md-12 col-sm-12" id="shape-icons"style="border: none;">
@@ -77,7 +81,6 @@
 
          <!-- options: PC -->
         <div class="col-lg-12 col-md-12 col-sm-12" id="options">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="blank-box"></div>
             <!-- Fill and Border Toggle -->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="fill-border-toggle-box">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="border:none; padding:0px;">Border</div>
@@ -136,12 +139,55 @@
         </div> <!-- End of options -->
     </div><!-- End of control board -->
 
-    <div class="container fluid" id="mobile-box"></div>
+    
 
     <div id="canvas-container">
         <canvas id="canvas-real" class="canvas"></canvas>
         <canvas id="canvas-draft" class="canvas"></canvas>
     </div>
+
+    <!-- mobile box -->
+    <div class="container fluid" id="mobile-box" style="padding:0px">
+        <div class="col-xs-9" style="padding:0px">
+            <div class="col-xs-12" style="padding:0px">
+                <div class="col-xs-1 fa fa-paint-brush btn btn-secondary" id="drawing-line-smooth-mobile" aria-hidden="true" ></div>
+                <div class="col-xs-1 btn btn-secondary" id="e-edge-mobile" aria-hidden="true">B1</div>
+                <div class="col-xs-1 btn btn-secondary" id="board-edge-mobile" aria-hidden="true">B2</div>
+                <i class="col-xs-1 fa fa-minus btn btn-default" id="draw-s-line3-mobile" aria-hidden="true"></i>
+                <span class="col-xs-1 btn btn-default" id="quad-curve-mobile" style="font-size: 12px; font-weight: 600; border: none; background: transparent;">ノ</span>
+                <div class="col-xs-1 btn btn-secondary" id="bezier-curve-mobile" aria-hidden="true">B-C</div>
+                <i class="col-xs-1 fa fa-square-o btn btn-default " id="drawing-rectangle2-mobile" aria-hidden="true"></i>
+                <i class="col-xs-1 fa fa-circle-o btn btn-default" id="drawing-circle2-mobile" aria-hidden="true"></i>
+                <div class="col-xs-1 btn btn-secondary" id="drawing-ellipse-mobile" aria-hidden="true">Ell</div>
+            </div>
+            <div class="col-xs-12" style="padding:0px">
+                
+                <i class="col-xs-1 btn btn-secondary fa fa-mouse-pointer" id="selector-mobile" aria-hidden="true"></i>
+                <i class="col-xs-1 btn btn-secondary fa fa-eraser" id="eraser-mobile" aria-hidden="true"></i>
+                <i class="col-xs-1 btn btn-secondary fa fa-undo" id="undo-mobile" aria-hidden="true"></i>
+                <i class="col-xs-1 btn btn-secondary fa fa-repeat" id="redo-mobile" aria-hidden="true"></i>
+                <i class="col-xs-1 btn btn-secondary fa fa-trash" id="clear-mobile" aria-hidden="true"></i>
+                <a href="#" id="download-mobile" download="image.jpg">
+                    <i class="col-xs-1 btn btn-secondary fa fa-download btn btn-default" aria-hidden="true"></i>
+                </a>
+                <i class="col-xs-1 fa fa-times btn btn-secondary" id="cancel-mobile" aria-hidden="true"></i> <!--Cancel -->
+                <i class="col-xs-1 fa fa-files-o btn btn-secondary" id="print-mobile" aria-hidden="true"></i> <!--Print-->
+            </div>
+            <div class="col-xs-12" style="padding:0px; margin-top:5px;">
+                 <!-- Size and Rotate Slider -->
+                <div class="col-xs-5" id="size-slider-bar-mobile">
+                    <div id="size-slider-mobile"></div><span id="size_field_mobile" value="1">1</span><span> px</span>
+                </div>
+                <div class="col-xs-7" id="rotate-slider-bar">
+                    <div id="rotate-slider-mobile"></div><span id="rotate_field_mobile" value="0">0</span><span > degree</span>
+                </div>
+                <!-- End Size and Rotate Slider -->
+            </div>
+        </div>
+        <div class="col-xs-3" style="padding:0px">
+            
+        </div>
+    </div><!-- End mobile box -->
 
     
 
@@ -196,6 +242,10 @@
         $('#download').on('click', () =>{
         document.getElementById("download").download = "image.jpg";
         document.getElementById("download").href = document.getElementById("canvas-real").toDataURL("image/jpeg");
+        });
+        $('#download-mobile').on('click', () =>{
+        document.getElementById("download-mobile").download = "image.jpg";
+        document.getElementById("download-mobile").href = document.getElementById("canvas-real").toDataURL("image/jpeg");
         });
     });
     </script>

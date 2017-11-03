@@ -10,6 +10,7 @@ let left = false;
 
 
 $('#canvas-draft').mousedown(function(e){
+    console.log(this.offsetTop);
     let mouseX = e.pageX - this.offsetLeft;
     let mouseY = e.pageY - this.offsetTop;
     console.log(`Mouse position is - x: ${e.pageX}, y: ${e.pageY}`)
@@ -60,8 +61,12 @@ $(window).mouseup(function(e){
     if ((left && dragging) || ((e.target.id == 'drawing-line-smooth') || (e.target.id == 'e-edge') || 
         (e.target.id == 'board-edge') || (e.target.id == 'draw-s-line3') || (e.target.id == 'quad-curve') ||
         (e.target.id == 'bezier-curve') || (e.target.id == 'drawing-rectangle2') || (e.target.id == 'drawing-circle2') ||
-        (e.target.id == 'drawing-ellipse') || (e.target.id == 'insert-text') || (e.target.id == 'eraser') ||
-        (e.target.id == 'redo') || (e.target.id == 'selector'))){
+        (e.target.id == 'drawing-ellipse') || (e.target.id == 'insert-text') || (e.target.id == 'eraser') || (e.target.id == 'download') ||
+        (e.target.id == 'redo') || (e.target.id == 'selector') || (e.target.id == 'drawing-line-smooth-mobile') || (e.target.id == 'e-edge-mobile') || 
+        (e.target.id == 'board-edge-mobile') || (e.target.id == 'draw-s-line3-mobile') || (e.target.id == 'quad-curve-mobile') ||
+        (e.target.id == 'bezier-curve-mobile') || (e.target.id == 'drawing-rectangle2-mobile') || (e.target.id == 'drawing-circle2-mobile') ||
+        (e.target.id == 'drawing-ellipse-mobile') || (e.target.id == 'insert-text-mobile') || (e.target.id == 'eraser-mobile') ||
+        (e.target.id == 'redo-mobile') || (e.target.id == 'selector-mobile') || (e.target.id == 'download-mobile') && (e.target.id != '') )){
         console.log(e.target.id);
         left = false;
         dragging = false;
@@ -116,7 +121,7 @@ $('#cancel').click(function(e){
     $("#rotate_field").val(0);
 });
 
-$('#print').click(function(e){
+$('#print, #print-mobile').click(function(e){
     currentFunction.onPrint();
 });
 

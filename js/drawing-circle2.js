@@ -1,5 +1,5 @@
 class DrawingCircle2 extends PaintFunction{
-    constructor(contextReal,contextDraft, canvas_log){
+    constructor(contextReal,contextDraft, canvas_log, mobile){
         super();
         this.contextReal = contextReal;
         this.contextDraft = contextDraft;
@@ -19,16 +19,23 @@ class DrawingCircle2 extends PaintFunction{
         this.move = false;
         this.print = false;
         this.change = false;
+        this.mobile = mobile;
         $('#border-choice').bootstrapToggle('on');
         $('#fill-choice').bootstrapToggle('off');
     }
     
     onMouseDown(coord,event){
         //setting style
-        this.contextDraft.strokeStyle = this.contextReal.strokeStyle = $('#color-label-stroke')[0].style.backgroundColor;
+        if(!this.mobile){
+            this.contextDraft.strokeStyle = this.contextReal.strokeStyle = $('#color-label-stroke')[0].style.backgroundColor;            
+            this.contextDraft.fillStyle = this.contextReal.fillStyle = $('#color-label-fill')[0].style.backgroundColor;
+            this.contextDraft.lineWidth = this.contextReal.lineWidth = parseInt($("#size_field").val());
+        } else{
+            this.contextDraft.strokeStyle = this.contextReal.strokeStyle = "black";            
+            this.contextDraft.fillStyle = this.contextReal.fillStyle = "black";
+            this.contextDraft.lineWidth = this.contextReal.lineWidth = parseInt($("#size_field_mobile").val()) || 1;
+        }
         this.contextDraft.lineJoin = this.contextReal.lineJoin = "round";
-        this.contextDraft.lineWidth = this.contextReal.lineWidth = parseInt($("#size_field").val());
-        this.contextDraft.fillStyle = this.contextReal.fillStyle = $('#color-label-fill')[0].style.backgroundColor;
         this.rotation  = parseInt($("#rotate_field").val()) || 0;
         this.border = $('#border-choice')[0].checked;
         this.fill = $('#fill-choice')[0].checked;
@@ -139,18 +146,30 @@ class DrawingCircle2 extends PaintFunction{
             this.fill = $('#fill-choice')[0].checked;
             this.contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
             //refresh setting
-            this.contextDraft.strokeStyle = this.contextReal.strokeStyle = $('#color-label-stroke')[0].style.backgroundColor;
-            this.contextDraft.lineWidth = this.contextReal.lineWidth = parseInt($("#size_field").val());
-            this.contextDraft.fillStyle = this.contextReal.fillStyle = $('#color-label-fill')[0].style.backgroundColor;
+            if(!this.mobile){
+                this.contextDraft.strokeStyle = this.contextReal.strokeStyle = $('#color-label-stroke')[0].style.backgroundColor;            
+                this.contextDraft.fillStyle = this.contextReal.fillStyle = $('#color-label-fill')[0].style.backgroundColor;
+                this.contextDraft.lineWidth = this.contextReal.lineWidth = parseInt($("#size_field").val());
+            } else{
+                this.contextDraft.strokeStyle = this.contextReal.strokeStyle = "black";            
+                this.contextDraft.fillStyle = this.contextReal.fillStyle = "black";
+                this.contextDraft.lineWidth = this.contextReal.lineWidth = parseInt($("#size_field_mobile").val()) || 1;
+            }
             //redraw curve
             this.drawCircle();
             this.change = false;
         }
     }
     onPrint(){
-        this.contextDraft.strokeStyle = this.contextReal.strokeStyle = $('#color-label-stroke')[0].style.backgroundColor;
-        this.contextDraft.lineWidth = this.contextReal.lineWidth = parseInt($("#size_field").val());
-        this.contextDraft.fillStyle = this.contextReal.fillStyle = $('#color-label-fill')[0].style.backgroundColor;
+        if(!this.mobile){
+            this.contextDraft.strokeStyle = this.contextReal.strokeStyle = $('#color-label-stroke')[0].style.backgroundColor;            
+            this.contextDraft.fillStyle = this.contextReal.fillStyle = $('#color-label-fill')[0].style.backgroundColor;
+            this.contextDraft.lineWidth = this.contextReal.lineWidth = parseInt($("#size_field").val());
+        } else{
+            this.contextDraft.strokeStyle = this.contextReal.strokeStyle = "black";            
+            this.contextDraft.fillStyle = this.contextReal.fillStyle = "black";
+            this.contextDraft.lineWidth = this.contextReal.lineWidth = parseInt($("#size_field_mobile").val()) || 1;
+        }
         //print a copy onto the real canvas and move the curve and control points to the right and down 10px
         this.contextReal.beginPath();
         this.contextReal.arc(this.centre_pt.x, this.centre_pt.y, this.radius, 0, 2*Math.PI);

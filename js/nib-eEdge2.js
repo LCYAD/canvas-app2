@@ -1,6 +1,6 @@
 class EEdge2 extends PaintFunction{
     
-    constructor(contextReal,contextDraft, canvas_log){
+    constructor(contextReal,contextDraft, canvas_log, mobile){
         super();
         this.canvas_log = canvas_log;
         this.context = contextReal; 
@@ -9,11 +9,17 @@ class EEdge2 extends PaintFunction{
         this.isDrawing = false;
         this.space = 4; //spacing between square
         this.size = 4; //height of each square
+        this.mobile=mobile;
     }
     
     onMouseDown(coord,event){ 
-        this.size = 4 + parseInt($("#size_field").val())/4;
-        this.context.fillStyle = $('#color-label-stroke')[0].style.backgroundColor; 
+        if (!this.mobile){
+            this.size = 4 + parseInt($("#size_field").val())/4;
+            this.context.fillStyle = $('#color-label-stroke')[0].style.backgroundColor; 
+        } else{
+            this.size = 4 + parseInt($("#size_field_mobile").val())/4 ||4;
+            this.context.fillStyle = "black";
+        }
         this.lastPoint = { x: coord[0], y: coord[1] };
         // this.context.drawImage(img,coord[0] ,coord[1], 20, 50)
     }
